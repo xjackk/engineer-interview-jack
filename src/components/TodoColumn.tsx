@@ -7,9 +7,10 @@ interface TodoColumnProps {
   todos: TodoItem[]
   onMoveLeft: (id: string) => void
   onMoveRight: (id: string) => void
+  onDelete: (id: string) => void
 }
 
-export function TodoColumn({ title, status, todos, onMoveLeft, onMoveRight }: TodoColumnProps) {
+export function TodoColumn({ title, status, todos, onMoveLeft, onMoveRight, onDelete }: TodoColumnProps) {
   const filteredTodos = todos.filter(todo => todo.status === status)
 
   const getCanMoveLeft = (todoStatus: TodoStatus) => {
@@ -34,6 +35,7 @@ export function TodoColumn({ title, status, todos, onMoveLeft, onMoveRight }: To
                 todo={todo}
                 onMoveLeft={onMoveLeft}
                 onMoveRight={onMoveRight}
+                onDelete={onDelete}
                 canMoveLeft={getCanMoveLeft(todo.status)}
                 canMoveRight={getCanMoveRight(todo.status)}
               />

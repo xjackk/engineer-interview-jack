@@ -45,6 +45,10 @@ export function ChallengeComponent() {
     }))
   }
 
+  const deleteTodo = (id: string) => {
+    setTodos(prev => prev.filter(todo => todo.id !== id))
+  }
+
   return (
     <div className="p-6">
       <div className="flex gap-6">
@@ -54,6 +58,7 @@ export function ChallengeComponent() {
           todos={todos}
           onMoveLeft={moveLeft}
           onMoveRight={moveRight}
+          onDelete={deleteTodo}
         />
         <TodoColumn
           title="In Progress"
@@ -61,6 +66,7 @@ export function ChallengeComponent() {
           todos={todos}
           onMoveLeft={moveLeft}
           onMoveRight={moveRight}
+          onDelete={deleteTodo}
         />
         <TodoColumn
           title="Done"
@@ -68,6 +74,7 @@ export function ChallengeComponent() {
           todos={todos}
           onMoveLeft={moveLeft}
           onMoveRight={moveRight}
+          onDelete={deleteTodo}
         />
       </div>
       <AddTodoForm onAddTodo={addTodo} />
