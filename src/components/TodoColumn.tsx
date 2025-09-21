@@ -24,7 +24,7 @@ export function TodoColumn({ title, status, todos, onMoveLeft, onMoveRight, onDe
   return (
     <div className="flex-1 min-h-96">
       <div className="bg-gray-100 rounded-lg p-4 h-full">
-        <h2 className="text-lg font-semibold mb-4 text-center">{title}</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center">{title}</h2>
         <div className="space-y-2">
           {filteredTodos.length === 0 ? (
             <p className="text-gray-500 text-center text-sm py-8">No items</p>

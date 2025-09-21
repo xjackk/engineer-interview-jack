@@ -1,10 +1,11 @@
-import { useState } from 'react'
 import { TodoColumn } from './components/TodoColumn'
 import { AddTodoForm } from './components/AddTodoForm'
 import { TodoItem, TodoStatus } from './types/todo'
+import { useLocalStorage } from './hooks/useLocalStorage'
 
 export function ChallengeComponent() {
-  const [todos, setTodos] = useState<TodoItem[]>([])
+  // "storedValue, setValue, clearValue" from useLocalStorage hook
+  const [todos, setTodos, clearTodos] = useLocalStorage<TodoItem[]>('todos', [])
 
   const generateId = () => crypto.randomUUID()
 
@@ -49,6 +50,10 @@ export function ChallengeComponent() {
     setTodos(prev => prev.filter(todo => todo.id !== id))
   }
 
+  const clearAllTodos = () => {
+    clearTodos()
+  }
+
   return (
     <div className="p-6">
       <div className="flex gap-6">
@@ -77,7 +82,7 @@ export function ChallengeComponent() {
           onDelete={deleteTodo}
         />
       </div>
-      <AddTodoForm onAddTodo={addTodo} />
+      <AddTodoForm onAddTodo={addTodo} onClearAll={clearAllTodos} todos={todos} />
     </div>
   )
 }
